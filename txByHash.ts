@@ -8,14 +8,14 @@ import {
 } from "thirdweb/rpc";
 import { checksumAddress } from "thirdweb/utils";
 
-const secretKey = '5033638d3031429cd77516c2302eb3f6';
+const client_id = process.env.THIRDWEB_CLIENT_ID;
 
-if (!secretKey) {
+if (!client_id) {
   throw new Error("THIRDWEB_SECRET_KEY is not set");
 }
 
 const client = createThirdwebClient({
-    clientId: secretKey,
+    clientId: client_id,
 });
 
 const chain = defineChain(31);
@@ -189,7 +189,7 @@ async function fetchAllDeployedAddresses(walletAddress: string, clientId: string
 }
 
 // Execute the script
-const clientId = "5033638d3031429cd77516c2302eb3f6";
+
 const walletAddress = "0xC0BF05DE429252699cCFD7aBA2645f640e816257";
 
-fetchAllDeployedAddresses(walletAddress, clientId);
+fetchAllDeployedAddresses(walletAddress, client_id);

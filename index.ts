@@ -2,7 +2,7 @@ import { createThirdwebClient, defineChain } from "thirdweb";
 import { deployERC20Contract, deployERC721Contract } from "thirdweb/deploys";
 import { privateKeyToAccount } from "thirdweb/wallets";
 
-const secretKey = process.env.THIRDWEB_CLIENT_ID;
+const secretKey = process.env.THIRDWEB_SECRET_KEY;
 
 if (!secretKey) {
   throw new Error("THIRDWEB_SECRET_KEY is not set");
@@ -36,8 +36,10 @@ const contractAddressERC20 = await deployERC20Contract({
       name: "RookieTokeb",
       description: "Make it happen",
       symbol: "MIH",
-   }
+      defaultAdmin: '0xD742C64Ab7ba8d31cee0594b4dc61b1ed8321246',
+    }
 });
+
 
 console.log(contractAddressERC20);
 // const contractAddress = await deployERC721Contract({
