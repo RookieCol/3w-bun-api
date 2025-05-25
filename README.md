@@ -1,5 +1,12 @@
 # Thirdweb bun API
 
+A RESTful API built with Hono and Bun, leveraging Thirdweb SDK v5. It currently provides endpoints to:
+
+- Deploy contracts on Rootstock Testnet (ERC20/721)
+- Query deployed contracts by wallet address (to be implemented)
+- Fetch metadata and type of each contract (to be implemented)
+
+
 To install dependencies:
 
 ```bash
@@ -14,12 +21,30 @@ bun run src/server.ts
 
 ## API Endpoints
 
+### Health Check
+
+Check the API status.
+
+```bash
+curl http://localhost:4000/health
+```
+
+#### Success Response
+
+**Status Code:** 200 OK
+
+```json
+{
+  "status": "ok"
+}
+```
+
 ### Deploy ERC20 Token
 
 Deploy a new ERC20 token on Rootstock Testnet.
 
 ```bash
-curl -X POST http://localhost:4000/deploy/erc20 \
+curl -X POST http://localhost:4000/v1/deploy/erc20 \
   -H "Content-Type: application/json" \
   -d '{
     "name": "MyToken",
@@ -33,7 +58,7 @@ curl -X POST http://localhost:4000/deploy/erc20 \
 Deploy a new ERC721 (NFT) token on Rootstock Testnet.
 
 ```bash
-curl -X POST http://localhost:4000/deploy/erc721 \
+curl -X POST http://localhost:4000/v1/deploy/erc721 \
   -H "Content-Type: application/json" \
   -d '{
     "name": "MyNFT",
@@ -41,10 +66,6 @@ curl -X POST http://localhost:4000/deploy/erc721 \
     "description": "My NFT collection"
   }'
 ```
-
-### Response Format
-
-#### Success Response
 
 **Status Code:** 200 OK
 
