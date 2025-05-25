@@ -15,7 +15,7 @@ app.use('*', cors({
 
 // Mount routes
 app.route('/', healthcheckRoutes);
-app.route('/deploy', deployRoutes);
+app.route('/v1/deploy', deployRoutes);  
 
 export default { 
     port: 4000, 
