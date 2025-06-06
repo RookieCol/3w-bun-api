@@ -50,9 +50,17 @@ curl -X POST http://localhost:4000/v1/deploy/erc20 \
   -d '{
     "name": "MyToken",
     "symbol": "MTK",
-    "description": "My test token"
+    "description": "My test token",
+    "defaultAdmin": "0x1234567890123456789012345678901234567890"
   }'
 ```
+
+**Parameters:**
+
+- `name` (required): Name of the token
+- `symbol` (required): Symbol of the token  
+- `description` (optional): Description of the token
+- `defaultAdmin` (optional): Address that will have admin rights over the contract
 
 ### ERC721 Token
 
@@ -64,7 +72,8 @@ curl -X POST http://localhost:4000/v1/deploy/erc721 \
   -d '{
     "name": "MyNFT",
     "symbol": "MNFT",
-    "description": "My NFT collection"
+    "description": "My NFT collection",
+    "defaultAdmin": "0x681AA2C3266Dd8435411490773f28FE5fa0E5FF7"
   }'
 ```
 
