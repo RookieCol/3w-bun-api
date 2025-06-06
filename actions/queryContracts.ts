@@ -1,6 +1,4 @@
 import {
-  createThirdwebClient,
-  defineChain,
   Insight,
   getContract
 } from "thirdweb";
@@ -17,9 +15,9 @@ const clientId = process.env.THIRDWEB_CLIENT_ID;
 
 if (!secretKey) throw new Error("THIRDWEB_SECRET_KEY is not set");
 if (!clientId) throw new Error("THIRDWEB_CLIENT_ID is not set");
+import { thirdwebClient, rootstockTestnet} from "@/lib/thirdweb/client";
 
-const client = createThirdwebClient({ secretKey, clientId });
-const chain = defineChain(31);
+
 
 async function main(ownerWallet: string) {
   // Step 1: Fetch all transactions (both ERC20 and ERC721 use same selector)
@@ -32,9 +30,9 @@ async function main(ownerWallet: string) {
   
   while (hasMore) {
     const transactions: Transaction[] = await Insight.getTransactions({
-      client,
+      client: thirdwebClient,
       walletAddress: deployerWallet,
-      chains: [chain],
+      chains: [rootstockTestnet],
       queryOptions: {
         filter_function_selector: "0xd057c8b1",
         limit: limit,
@@ -55,7 +53,7 @@ async function main(ownerWallet: string) {
 
   // Step 2: Get receipts
   const hashes: string[] = allTransactions.map((tx) => tx.hash);
-  const rpcRequest = getRpcClient({ client, chain });
+  const rpcRequest = getRpcClient({ client:thirdwebClient, chain:rootstockTestnet });
   
   const receipts = await Promise.all(
     hashes.map((hash) =>
@@ -136,8 +134,8 @@ async function main(ownerWallet: string) {
     
     try {
       const contract = getContract({
-        client,
-        chain,
+        client: thirdwebClient,
+        chain: rootstockTestnet,
         address: address as Address,
       });
 
