@@ -51,8 +51,9 @@ curl -X POST http://localhost:4000/v1/deploy/erc20 \
     "name": "MyToken",
     "symbol": "MTK",
     "description": "My test token",
-    "defaultAdmin": "0x1234567890123456789012345678901234567890"
-  }'
+    "defaultAdmin": "0x1234567890123456789012345678901234567890",
+    "image": "ipfs://<uri>"
+    }'
 ```
 
 **Parameters:**
@@ -73,7 +74,8 @@ curl -X POST http://localhost:4000/v1/deploy/erc721 \
     "name": "MyNFT",
     "symbol": "MNFT",
     "description": "My NFT collection",
-    "defaultAdmin": "0x681AA2C3266Dd8435411490773f28FE5fa0E5FF7"
+    "defaultAdmin": "0x681AA2C3266Dd8435411490773f28FE5fa0E5FF7",
+    "image": "ipfs://<uri>"
   }'
 ```
 

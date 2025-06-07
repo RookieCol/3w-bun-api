@@ -21,14 +21,15 @@ export async function deployERC20(params: {
   symbol: string;
   description?: string;
   defaultAdmin: string;
+  image?: string;
 }): Promise<string> {
-  const { name, symbol, description, defaultAdmin } = params;
+  const { name, symbol, description, defaultAdmin, image } = params;
   return await deployERC20Contract({
     chain: rootstockTestnet,
     client: thirdwebClient,
     account,
     type: "TokenERC20",
-    params: { name, symbol, description, defaultAdmin, platformFeeRecipient:defaultAdmin, saleRecipient:defaultAdmin },
+    params: { name, symbol, description, defaultAdmin, platformFeeRecipient:defaultAdmin, saleRecipient:defaultAdmin, image },
   });
 }
 
@@ -40,13 +41,14 @@ export async function deployERC721(params: {
   symbol: string;
   description?: string;
   defaultAdmin: string;
+  image?: string;
 }): Promise<string> {
-  const { name, symbol, description, defaultAdmin } = params;
+  const { name, symbol, description, defaultAdmin, image } = params;
   return await deployERC721Contract({
     chain: rootstockTestnet,
     client: thirdwebClient,
     account,
     type: "DropERC721",
-    params: { defaultAdmin, name, symbol, description, platformFeeRecipient:defaultAdmin, saleRecipient:defaultAdmin   },
+    params: { defaultAdmin, name, symbol, description, platformFeeRecipient:defaultAdmin, saleRecipient:defaultAdmin,image},
   });
 }
