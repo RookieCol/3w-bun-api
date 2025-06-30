@@ -14,9 +14,11 @@ import { getContractMetadata } from "thirdweb/extensions/common";
 
 const secretKey = process.env.THIRDWEB_SECRET_KEY;
 const clientId = process.env.THIRDWEB_CLIENT_ID;
+const deployerWallet = process.env.DEPLOYER_WALLET;
 
 if (!secretKey) throw new Error("THIRDWEB_SECRET_KEY is not set");
 if (!clientId) throw new Error("THIRDWEB_CLIENT_ID is not set");
+if (!deployerWallet) throw new Error("DEPLOYER_WALLET is not set");
 
 const client = createThirdwebClient({ secretKey, clientId });
 const chain = defineChain(31);
@@ -42,10 +44,8 @@ interface QueryDeploysResult {
  * Fetches all deployed contracts for a given owner wallet address
  */
 export async function queryDeployedContracts(ownerWallet: string): Promise<QueryDeploysResult> {
-  const deployerWallet = "0xC0BF05DE429252699cCFD7aBA2645f640e816257";
-  
   // Fetch all transactions with pagination
-  const allTransactions = await fetchAllTransactions(deployerWallet);
+  const allTransactions = await fetchAllTransactions(deployerWallet!);
   
   // Get receipts for all transactions
   const receipts = await fetchTransactionReceipts(allTransactions);
